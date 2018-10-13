@@ -121,6 +121,10 @@ function bobthefish_display_colors -a color_scheme -d 'Print example prompt colo
   echo -ns $virtualenv_glyph virtualfish ' '
   __bobthefish_finish_segments
 
+  __bobthefish_start_segment $color_disabled_virtualfish
+  echo -ns $virtualenv_glyph virtualfish_available ' '
+  __bobthefish_finish_segments
+
   __bobthefish_start_segment $color_virtualgo
   echo -ns $go_glyph virtualgo ' '
   __bobthefish_finish_segments

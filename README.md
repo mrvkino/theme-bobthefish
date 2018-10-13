@@ -78,6 +78,7 @@ set -g theme_display_vagrant yes
 set -g theme_display_docker_machine no
 set -g theme_display_k8s_context yes
 set -g theme_display_hg yes
+set -g theme_display_python yes
 set -g theme_display_virtualenv no
 set -g theme_display_ruby no
 set -g theme_display_user ssh

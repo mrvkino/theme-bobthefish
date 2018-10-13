@@ -28,6 +28,7 @@
 #     set -g theme_display_docker_machine no
 #     set -g theme_display_k8s_context yes
 #     set -g theme_display_hg yes
+#     set -g theme_display_python no
 #     set -g theme_display_virtualenv no
 #     set -g theme_display_ruby no
 #     set -g theme_display_user ssh
@@ -682,6 +683,14 @@ function __bobthefish_virtualenv_python_version -S -d 'Get current Python versio
   end
 end
 
+function __bobthefish_default_python_version -S -d "Get current Python version"
+  if pipenv --venv >/dev/null 2>&1
+    __bobthefish_start_segment $color_disabled_virtualfish
+    echo -ns $virtualenv_glyph
+  end
+  return
+end
+
 function __bobthefish_prompt_virtualfish -S -d "Display current Python virtual environment (only for virtualfish, virtualenv's activate.fish changes prompt by itself) or conda environment."
   [ "$theme_display_virtualenv" = 'no' -o -z "$VIRTUAL_ENV" -a -z "$CONDA_DEFAULT_ENV" ]; and return
   set -l version_glyph (__bobthefish_virtualenv_python_version)
@@ -693,6 +702,16 @@ function __bobthefish_prompt_virtualfish -S -d "Display current Python virtual e
     echo -ns (basename "$VIRTUAL_ENV") ' '
   else if [ "$CONDA_DEFAULT_ENV" ]
     echo -ns (basename "$CONDA_DEFAULT_ENV") ' '
+  end
+end
+
+function __bobthefish_prompt_pythons -S -d "Display the current virtualenv or if a pipenv environment is available"
+  [ "$theme_display_python" = 'no' ]; and return
+
+  if [ "$theme_display_virtualenv" = 'no' -o -z "$VIRTUAL_ENV" -a -z "$CONDA_DEFAULT_ENV" ]
+    __bobthefish_default_python_version
+  else
+    __bobthefish_prompt_virtualfish
   end
 end
 
@@ -899,7 +918,8 @@ function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
   # Virtual environments
   __bobthefish_prompt_desk
   __bobthefish_prompt_rubies
-  __bobthefish_prompt_virtualfish
+  # __bobthefish_prompt_virtualfish
+  __bobthefish_prompt_pythons
   __bobthefish_prompt_virtualgo
 
   # VCS
