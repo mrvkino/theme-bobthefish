@@ -5,6 +5,7 @@ function __bobthefish_glyphs -S -d 'Define glyphs used by bobthefish'
   set -x right_arrow_glyph       \uE0B1
   set -x left_black_arrow_glyph  \uE0B2
   set -x left_arrow_glyph        \uE0B3
+  set -x start_user_input        "❯"
 
   # Additional glyphs
   set -x detached_glyph          \u27A6
