@@ -70,8 +70,7 @@ function __bobthefish_glyphs -S -d 'Define glyphs used by bobthefish'
 
     set git_dirty_glyph      \uF448 '' # nf-oct-pencil
     set git_staged_glyph     \uF0C7 '' # nf-fa-save
-    # set git_stashed_glyph    \uF0C6 '' # nf-fa-paperclip
-    set git_stashed_glyph    "≡" '' # nf-fa-Identical To
+    set git_stashed_glyph    \uF0C6 '' # nf-fa-paperclip
     set git_untracked_glyph  \uF128 '' # nf-fa-question
     # set git_untracked_glyph  \uF141 '' # nf-fa-ellipsis_h
 
