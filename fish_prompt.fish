@@ -743,11 +743,11 @@ function __bobthefish_virtualenv_python_version -S -d 'Get current Python versio
 end
 
 function __bobthefish_default_python_version -S -d "Get current Python version"
-  if pipenv --venv >/dev/null 2>&1
-    __bobthefish_start_segment $color_disabled_virtualfish
-    echo -ns $virtualenv_glyph
-  end
-  return
+    if pipenv --venv >/dev/null 2>&1
+        __bobthefish_start_segment $color_disabled_virtualfish
+        echo -ns $virtualenv_glyph
+    end
+    return
 end
 
 function __bobthefish_prompt_virtualfish -S -d "Display current Python virtual environment (only for virtualfish, virtualenv's activate.fish changes prompt by itself) or conda environment."
@@ -769,13 +769,14 @@ function __bobthefish_prompt_virtualfish -S -d "Display current Python virtual e
 end
 
 function __bobthefish_prompt_pythons -S -d "Display the current virtualenv or if a pipenv environment is available"
-  [ "$theme_display_python" = 'no' ]; and return
+    [ "$theme_display_python" = 'no' ]
+    and return
 
-  if [ "$theme_display_virtualenv" = 'no' -o -z "$VIRTUAL_ENV" -a -z "$CONDA_DEFAULT_ENV" ]
-    __bobthefish_default_python_version
-  else
-    __bobthefish_prompt_virtualfish
-  end
+    if [ "$theme_display_virtualenv" = 'no' -o -z "$VIRTUAL_ENV" -a -z "$CONDA_DEFAULT_ENV" ]
+        __bobthefish_default_python_version
+    else
+        __bobthefish_prompt_virtualfish
+    end
 end
 
 function __bobthefish_prompt_virtualgo -S -d 'Display current Go virtual environment'
@@ -965,7 +966,6 @@ end
 
 function fish_prompt -d 'bobthefish, a fish theme optimized for awesome'
     # Save the last status for later (do this before the `set` calls below)
-    echo ""
     set -l last_status $status
 
     __bobthefish_glyphs
